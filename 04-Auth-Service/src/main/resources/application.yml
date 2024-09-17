@@ -1,0 +1,13 @@
+#server:
+#  port: 8081
+
+spring:
+  application:
+    name: Auth-Service
+#  cloud:
+#    config:
+#      uri: http://localhost:2222/
+#      profile: default
+#      enabled: false
+  config:
+    import: optional:configserver:http://localhost:2222/
