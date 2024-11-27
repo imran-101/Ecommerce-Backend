@@ -1,6 +1,6 @@
 package com.userimran.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,10 +16,10 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class AppSecurityConfig {
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
 
     @Bean
     public PasswordEncoder pwdEncoder() {
@@ -43,7 +43,7 @@ public class AppSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         return http.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/register", "/login").permitAll())
+                .authorizeHttpRequests(auth -> auth.requestMatchers("/**","/register/**", "/login","/role/register").permitAll())
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll())
                 .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
                 .build();

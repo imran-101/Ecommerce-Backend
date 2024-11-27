@@ -1,0 +1,30 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: ReportMS
+  datasource:
+    url: jdbc:mysql://localhost:3306/ecommerce_backend
+    username: root
+    password: idfc
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  boot:
+    admin:
+      client:
+        url: http://localhost:1111/
+  config:
+    import: optional:configserver:http://localhost:2222/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+report-service:
+  messages:
+    orderFetch: All Orders Fetched Successfully
+    orderFetchErr: Failed to Fetch All Orders

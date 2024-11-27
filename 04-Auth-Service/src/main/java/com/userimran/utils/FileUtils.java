@@ -12,7 +12,7 @@ import java.util.Objects;
 
 
 public class FileUtils {
-    public static String saveFile(String fileName, MultipartFile file) throws Exception {
+    public static String saveFile(MultipartFile file) throws Exception {
 
         Path uploadPath= Paths.get("upload/user-images");
 

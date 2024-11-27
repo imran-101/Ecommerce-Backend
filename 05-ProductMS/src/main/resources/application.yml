@@ -1,13 +1,47 @@
 server:
-    port: 8081
+  port: 8082
 spring:
-    application:
-        name: ProductMS
-    datasource:
-        password: idfc
-        url: jdbc:mysql://localhost:3306/ecommerce_backend
-        username: root
-    jpa:
-        hibernate:
-            ddl-auto: update
-        show-sql: true
+  application:
+    name: ProductMS
+  datasource:
+    password: idfc
+    url: jdbc:mysql://localhost:3306/ecommerce_backend
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  boot:
+    admin:
+      client:
+        url: http://localhost:1111/
+  config:
+    import: optional:configserver:http://localhost:2222/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+product-service:
+  messages:
+    categoryAdded: Category Added Successfully
+    categoryAddErr: Failed to Add Category
+    categoryUpdate: Category Updated Successfully
+    categoryUpdateErr: Failed to update category
+    categoryFetch: All Categories fetched successfully
+    categoryFetchErr: Failed to fetch all categories
+    categorySelect: Category Retrieved Successfully
+    categorySelectErr: Failed to retrieve category
+    categoryDelete: Category deleted successfully
+    categoryDeleteErr: Failed to delete category
+    productAdded: Product Added Successfully
+    productAddErr: Failed to Add Product
+    productUpdate: Product Updated Successfully
+    productUpdateErr: Failed to update Product
+    productFetch: All Products fetched successfully
+    productFetchErr: Failed to fetch all Products
+    productSelect: Product Retrieved Successfully
+    productSelectErr: Failed to retrieve Product
+    productDelete: Product deleted successfully
+    productDeleteErr: Failed to delete Products
+    loginErr: Invalid Credentials

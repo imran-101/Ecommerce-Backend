@@ -1,0 +1,34 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: CartMS
+  datasource:
+    url: jdbc:mysql://localhost:3306/ecommerce_backend
+    password: idfc
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  boot:
+    admin:
+      client:
+        url: http://localhost:1111/
+  config:
+    import: optional:configserver:http://localhost:2222/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+cart-service:
+  messages:
+    cartAdded: Cart added successfully
+    cartAddErr: Failed to add Cart
+    cartUpdateSuccess: Cart Update successfully
+    cartUpdateErr: cart update failed
+    cartRetrieveSuccess: cart retrieve success
+    cartRetrieveErr: cart retrieve failed
+    cartDeleteSuccess: cart deleted successfully
